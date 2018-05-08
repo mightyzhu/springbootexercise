@@ -1,0 +1,9 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /sb
+mark:
+    perfect: 99
+    good: 79
+    qualified: 59
+
