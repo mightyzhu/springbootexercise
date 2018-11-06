@@ -6,17 +6,24 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * HelloController
+ */
 //@RestController // RestController =  @Controller + @ResponseBody
 @Controller
 @ResponseBody
 @RequestMapping("/hello")
 public class HelloController {
 
-    @Autowired
-    private MarkProperties markProperties;
+    private final MarkProperties markProperties;
 
     @Value("${mark.perfect}")
     private int perfect;
+
+    @Autowired
+    public HelloController(MarkProperties markProperties) {
+        this.markProperties = markProperties;
+    }
 
     @RequestMapping(value = {"/hello", "/hi"}, method = RequestMethod.GET)
     // 不写method = RequestMethod.GET，默认get，post都可请求
@@ -34,4 +41,6 @@ public class HelloController {
     public String say3(@RequestParam(value = "id", required = false, defaultValue = "1") int id) { //@PathVariable的使用
         return "id3:" + id;
     }
+
+
 }
